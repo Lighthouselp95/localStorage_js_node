@@ -4,6 +4,7 @@ const fs = require('fs');
 
 const server = http.createServer((req,res) => {
     // console.log(req.url, req.method);
+    console.log(req.hostname, req.headers.host);
     // Set header content type
     res.setHeader('Content-Type','text/html');
     // res.writeHead(200,{'Content-Type': 'text/html'})
@@ -48,26 +49,25 @@ const server = http.createServer((req,res) => {
     // res.write('<p>hello again, Dang</p>');
     // res.end();
     // send an html file
-    fs.readFile(path, (err,data) => {
-if(err) {
-    console.log(err);
-    res.end();
-} else {
-    res.write(data);
+//     fs.readFile(path, (err,data) => {
+// if(err) {
+//     console.log(err);
+//     res.end();
+// } else {
+//     res.write(data);
     
-    res.end();
-}
-    });
+//     res.end();
+// }
+//     });
 // send by stream
 
-// const readStream = fs.createReadStream(path,(err) => {
-//     if(err) {
-//         console.log(err);
-//     }
-// });
+const readStream = fs.createReadStream(path,(err) => {
+    if(err) {
+        console.log(err);
+    }
+});
 
-// readStream.pipe(res);
-// res.end();
+readStream.pipe(res);
 
 });
 //server listen
