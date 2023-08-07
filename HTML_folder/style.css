@@ -56,10 +56,20 @@ body {
     
 }
 
-@media (max-width: 550px) {
+@media (max-width: 500px) {
+    body {
+        margin: 0px 3px;
+    }
     .about-logo img {
         width: 100%;
         background-color: white;
     }
-    
+    .nav {
+        margin: 30px 0px 20px;
+        display: flex;
+        /* background-color: rgb(138, 138, 138); */
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 22px 10px;
+    }
 }
