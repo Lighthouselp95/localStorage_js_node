@@ -7,23 +7,41 @@
 }
 
 body {
-    margin: 0px 10px;
+    margin: 0px 7px;
 }
 .header {
     height: 100px;
-    
-    
 }
-
-#logo {
-    display: inline-block;
+.logo {
     height: 100%;
     padding-left: 50px;
-    
+}
+
+.logo img {
+    height: 100%;  
+    background-color: white;
+}
+.about-header {
+      
+}
+.about-logo {
+    height: 100%;
+    padding-left: 0px;
+    text-align: center;
+}
+.about-logo img {
+    height: 400px;
+   
     background-color: white;
 }
 .nav {
-       margin: 30px 100px 20px;
+       margin: 30px 0px 20px;
+       display: flex;
+       /* background-color: rgb(138, 138, 138); */
+       flex-direction: row;
+       justify-content: space-around;
+       padding: 22px 20px;
+   
 }
 .button {
     background-color: aquamarine;
@@ -31,6 +49,7 @@ body {
     padding: 2px 10px;
     text-decoration: none;
     display: inline-block;
+    
 }
 .content {
     padding-top: 50px;

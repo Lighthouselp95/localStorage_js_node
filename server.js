@@ -22,14 +22,16 @@ const server = http.createServer((req,res) => {
     
     case '/style.css':
     path += '/style.css';
+    res.setHeader('Content-Type','text/css');
     break;
     case '/assets/images/logo.png':
     path += '/assets/images/logo.png';
     res.setHeader('Content-Type','image/jpeg');
-    
+
     break;
     case '/js.js':
     path += '/js.js';
+    res.setHeader('Content-Type','text/javascript');
     break;
 
 
