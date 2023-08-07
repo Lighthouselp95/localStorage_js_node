@@ -68,10 +68,10 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 22px 0px;
+        padding: 22px 10px;
         gap: 0px;
     }
     .content {
-        margin: 0px 5px;
+        margin: 0px 10px;
     }
 }
