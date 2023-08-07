@@ -67,10 +67,10 @@ body {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 22px 5px;
+        padding: 22px 0px;
         gap: 0px;
     }
     .content {
-        padding: 50px 15px;
+        padding: 50px 3px;
     }
 }
