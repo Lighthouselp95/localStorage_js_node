@@ -39,7 +39,7 @@ body {
        display: flex;
        /* background-color: rgb(138, 138, 138); */
        flex-direction: row;
-       justify-content: space-around;
+       justify-content: space-between;
        padding: 22px 20px;
    
 }
