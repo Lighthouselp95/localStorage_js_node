@@ -1,76 +1,40 @@
-const http = require('http');
-const fs = require('fs');
+const express = require('express');
+const morgan = require('morgan');
 
+// express app
+const app = express();
 
-const server = http.createServer((req,res) => {
-    // console.log(req.url, req.method);
-    console.log(req.hostname, req.headers.host);
-    // Set header content type
-    res.setHeader('Content-Type','text/html');
-    // res.writeHead(200,{'Content-Type': 'text/html'})
-    let path = './HTML_folder';
-    switch(req.url) {
-    case '/':   
-    path += '/index.html';
-    res.statusCode = 200;
-    break;
-    case '/about':
-    path += '/about.html';
-    break;
-    case '/about-me':
-    res.statusCode = 301;
-    res.setHeader('Location','/about');
-    
-    case '/style.css':
-    path += '/style.css';
-    res.setHeader('Content-Type','text/css');
-    break;
-    case '/assets/images/logo.png':
-    path += '/assets/images/logo.png';
-    res.setHeader('Content-Type','image/jpeg');
+// listening to port: 3000
+app.listen(3000, () => {
+    console.log('Listening on port: 3000');
+});
+// use morgan to log request
+app.use(morgan('dev'));
 
-    break;
-    case '/js.js':
-    path += '/js.js';
-    res.setHeader('Content-Type','text/javascript');
-    break;
+app.use('/public',express.static('publics'));
+app.get('/', (req,res) => {
 
-
-    default: 
-    path += '/404.html';
-    res.statusCode = 404;
-    // res.writeHead(404,{'Content-Type': 'text/html'})
-    break;
-}
-// console.log(path);
-    //sen write file
-    // res.write('<head><link rel="stylesheet"></head>')
-    // res.write('<p>hello, Dang</p>');
-    // res.write('<p>hello again, Dang</p>');
-    // res.end();
-    // send an html file
-//     fs.readFile(path, (err,data) => {
-// if(err) {
-//     console.log(err);
-//     res.end();
-// } else {
-//     res.write(data);
-    
-//     res.end();
-// }
-//     });
-// send by stream
-
-const readStream = fs.createReadStream(path,(err) => {
-    if(err) {
-        console.log(err);
-    }
+    res.sendFile('./publics/index.html', {root: __dirname});
 });
 
-readStream.pipe(res);
-
+app.get('/about', (req,res) => {
+    res.sendFile('./publics/about.html', {root: __dirname});
 });
-//server listen
-server.listen(3000, () => {
-    console.log('Server is running at port: 3000');
+// redirect
+app.get('/about-us', (req,res) => {
+    res.redirect('https://www.google.com');
+    res.redirect('/about');
+});
+app.get('/about-us2', (req,res) => {
+    res.writeHead(302,{'Location' : '/about'});
+});
+// handle params
+app.get('/example/:name/:age', (req,res) => {
+    console.log(req.params);
+    console.log(req.query, JSON.stringify(req.query));
+    res.send(req.params.name +" "+ req.params.age);
 })
+// 404 error
+app.use((req,res) => {
+    res.status(404).sendFile('./publics/404.html', {root: __dirname});
+});
